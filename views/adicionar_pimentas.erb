@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title><%= session[:email] %> adicione as pimentas que você cultiva</title>
+  </head>
+  <body>
+      <% @associados[session[:email]].each do |pimenta| %>
+        <li>
+      <% end %>
+    </table>
+    <fieldset>
+      <legend>Adicione suas pimentas a lista</legend>
+
+      <form action="/adicionar_pimenta" method="post">
+        <p>
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" value="" />
+        </p>
+        <p>
+        <label for="estoque">Estoque:</label>
+        <input type="text" name="estoque" value="" />
+        </p>
+
+        <p>
+        <label for="nome">Picância:</label>
+        <input type="text" name="picancia" value="" />
+        </p>
+        <p><input type="submit" value="adicionar pimenta" /></p>
+      </form>
+    </fieldset>
+  </body>
+
+</html>
