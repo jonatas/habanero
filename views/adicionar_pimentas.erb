@@ -1,14 +1,17 @@
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title><%= session[:email] %> adicione as pimentas que você cultiva</title>
+    <title><%= pimenteiro.inspect %> adicione as pimentas que você cultiva</title>
   </head>
   <body>
-      <% @associados[session[:email]].each do |pimenta| %>
-        <li>
+    <fieldset class="minhas-pimentas">
+      <legend>Minhas Pimentas</legend>
+   
+      <% pimenteiro.pimentas.each do |pimenta| %>
+        <li style="font-size:<%=(pimenta.picancia.to_i/900)+15%>px"/><%= pimenta.nome %> >> <a href="/apagar_pimenta/<%= pimenta.id %>">apagar</a> << </li>
       <% end %>
-    </table>
-    <fieldset>
+    </fieldset>
+    <fieldset class="adicione-pimenta">
       <legend>Adicione suas pimentas a lista</legend>
 
       <form action="/adicionar_pimenta" method="post">
@@ -20,7 +23,6 @@
         <label for="estoque">Estoque:</label>
         <input type="text" name="estoque" value="" />
         </p>
-
         <p>
         <label for="nome">Picância:</label>
         <input type="text" name="picancia" value="" />

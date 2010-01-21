@@ -13,8 +13,13 @@ require 'spec/expectations'
 # Webrat
 require 'webrat'
 Webrat.configure do |config|
-  config.mode = :sinatra
+    config.mode = :sinatra
 end
-
-World{Webrat::SinatraSession.new}
-World(Webrat::Matchers, Webrat::HaveTagMatcher)
+ 
+World do
+  session = Webrat::SinatraSession.new
+  session.extend(Webrat::Matchers)
+  session.extend(Webrat::HaveTagMatcher)
+  session
+end
+ 
